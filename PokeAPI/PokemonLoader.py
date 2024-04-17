@@ -6,13 +6,18 @@ from Common.Common import CommonConfigLoader
 class LoadPokeMon(IHTTPClass):
     def __init__(self, config: CommonConfigLoader | str = None) -> None:
         super().__init__()
-    async def Run(self):
+
+    async def Run(self, on_done_func):
+        task = asyncio.ensure_future(self._run())
+        await task
+        return on_done_func(task)
+
+    async def _run(self):
         print("Done")
         # Load Pokemon data
         pokemon_data = await self.LoadPokeMon()
         # Write Pokemon data to a file
         await self.WriteToFile(pokemon_data)
-
     @classmethod
     async def UsingDf(cls, name: str) -> 'LoadPokeMon':
         # Perform asynchronous tasks here

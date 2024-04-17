@@ -1,11 +1,10 @@
 import asyncio
 from PokeAPI.PokemonLoader import *
+isDone = False
+def onDone(p):
+    global isDone
+    isDone = True
+    print("DOne")
 
-async def main():
-    # Create an instance of LoadPokeMon
-    pokemon_loader = LoadPokeMon()
-    # Dispatch the Run method asynchronously and don't wait for it to complete
-    asyncio.create_task(pokemon_loader.Run())
 
-# Run the main function asynchronously
-asyncio.run(main())
+asyncio.run(LoadPokeMon().Run(onDone))
