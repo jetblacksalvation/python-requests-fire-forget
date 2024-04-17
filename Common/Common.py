@@ -28,8 +28,8 @@ class IHTTPClass(ABC):
             pass
         self.token = ""
     @abstractmethod
-    def run(self) -> None:
-        pass
+    def Run(self) -> None:
+        return
     @abstractmethod
     def LogDfDelta(self, df1:pandas.DataFrame, df2:pandas.DataFrame)->Self:
         pass
